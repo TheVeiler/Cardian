@@ -1,0 +1,17 @@
+{
+	"compilerOptions": {
+		"outDir": "./dist",
+		"moduleDetection": "force",
+		"module": "Preserve",
+		"resolveJsonModule": true,
+		"allowJs": true,
+		"esModuleInterop": true,
+		"isolatedModules": true,
+		"target": "es6",
+
+		"paths": {
+			"@lib": ["./src/lib/index.ts"],
+			"@plugins/decklists": ["./src/plugins/decklists/index.ts"]
+		}
+	}
+}
