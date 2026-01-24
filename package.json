@@ -1,28 +1,58 @@
 {
-	"name": "poker",
+	"name": "cardian",
 	"version": "1.0.0",
 	"description": "",
-	"main": "index.js",
+	"author": "TheVeiler",
+	"license": "ISC",
+	"keywords": [],
+
+	"homepage": "https://github.com/TheVeiler/Cardian#readme",
+	"bugs": {
+		"url": "https://github.com/TheVeiler/Cardian/issues"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/TheVeiler/Cardian.git"
+	},
+
 	"type": "module",
+    "main": "./dist/index.cjs",
+    "module": "./dist/index.mjs",
+    "types": "./dist/index.d.cts",
+	"exports": {
+        "require": {
+            "types": "./dist/index.d.cts",
+            "default": "./dist/index.cjs"
+        },
+        "import": {
+            "types": "./dist/index.d.mts",
+            "default": "./dist/index.mjs"
+        }
+    },
+
 	"scripts": {
-		"dev": "tsx watch ./src/index.ts",
+		"dev": "tsx watch ./src/example.ts",
 		"format": "prettier . --write",
 		"lint": "eslint",
+		"build": "pkgroll",
+		"prestart": "npm run build",
+		"start": "node ./dist/index.mjs",
+		"prepack": "npm run build",
+		"pack": "npm pack --pack-destination ..",
 		"test": ""
 	},
-	"keywords": [],
-	"author": "",
-	"license": "ISC",
+
 	"devDependencies": {
 		"@eslint/css": "^0.9.0",
 		"@eslint/js": "^9.30.1",
-		"@eslint/json": "^0.12.0",
+		"@eslint/json": "^0.14.0",
 		"@eslint/markdown": "^6.6.0",
 		"@types/jest": "^30.0.0",
 		"@types/node": "^24.0.10",
 		"eslint": "^9.30.1",
 		"globals": "^16.3.0",
 		"jest": "^30.0.4",
+		"pkgroll": "^2.21.4",
 		"prettier": "^3.6.2",
 		"ts-jest": "^29.4.0",
 		"tsx": "^4.20.3",

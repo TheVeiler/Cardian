@@ -1,10 +1,10 @@
-import js from "@eslint/js"
-import globals from "globals"
-import tseslint from "typescript-eslint"
-import json from "@eslint/json"
-import markdown from "@eslint/markdown"
-import css from "@eslint/css"
-import { defineConfig, globalIgnores } from "eslint/config"
+import js from "@eslint/js";
+import globals from "globals";
+import tseslint from "typescript-eslint";
+import json from "@eslint/json";
+import markdown from "@eslint/markdown";
+import css from "@eslint/css";
+import { defineConfig, globalIgnores } from "eslint/config";
 
 export default defineConfig([
 	globalIgnores(["package-lock.json"]),
@@ -36,8 +36,8 @@ export default defineConfig([
 	{ files: ["**/*.css"], plugins: { css }, language: "css/css", extends: ["css/recommended"] },
 	{
 		rules: {
-			"no-unused-vars": "warn",
-			"@typescript-eslint/no-unused-vars": "off",
+			"no-unused-vars": "off",
+			"@typescript-eslint/no-unused-vars": "warn",
 		},
 	},
-])
+]);
