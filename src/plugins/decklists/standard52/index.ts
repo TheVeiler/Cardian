@@ -1,5 +1,4 @@
-import type { CardValue, CardSuit } from "./index.d";
-import { Decklist, PseudoCard } from "@lib";
+import { PseudoCard } from "@lib";
 
 const suitInitials = {
 	"♦": "d",
@@ -11,37 +10,23 @@ const suitInitials = {
 /**
  * A standard 52-card deck of French-suited playing cards (Ace to King, for each of the four suits: clubs, diamonds, hearts and spades).
  */
-export default (): Decklist => {
-	const setValues: Set<CardValue> = new Set([
-		"A",
-		"K",
-		"Q",
-		"J",
-		"10",
-		"9",
-		"8",
-		"7",
-		"6",
-		"5",
-		"4",
-		"3",
-		"2",
-	]);
-	const setSuits: Set<CardSuit> = new Set(["♦", "♠", "♥", "♣"]);
+export default (): Array<PseudoCard> => {
+	const ranks = new Set(["A", "K", "Q", "J", "10", "9", "8", "7", "6", "5", "4", "3", "2"]);
+	const suits = new Set(["♦", "♠", "♥", "♣"]);
 
 	const pseudoCards: Array<PseudoCard> = [];
 
-	for (const suit of setSuits) {
-		for (const value of setValues) {
+	for (const suit of suits) {
+		for (const rank of ranks) {
 			pseudoCards.push({
-				name: `${value}${suit}`,
+				name: `${rank}${suit}`,
 				assets: {
-					front: `./assets/${value.toLowerCase()}${suitInitials[suit]}.svg`,
+					front: `./assets/${rank.toLowerCase()}${suitInitials[suit]}.svg`,
 					back: "./assets/back_blue.svg",
 				},
 			});
 		}
 	}
 
-	return new Decklist(...pseudoCards);
+	return pseudoCards;
 };

@@ -147,21 +147,21 @@ export class CardStorage {
 	}
 
 	/**
-	 * Draws Cards from a given CardStorage. If the sender doesn't have enough Cards, a RangeError will be thrown and none of the Cards will move.
-	 * @param {CardStorage} sender - The CardStorage from which draw Cards.
+	 * Draws Cards from a given CardStorage. If the storage doesn't have enough Cards, a RangeError will be thrown and none of the Cards will move.
+	 * @param {CardStorage} storage - The CardStorage from which draw Cards.
 	 * @param {number} number - The number of cards to draw (default: 1)
 	 * @returns The updated CardStorage
 	 * @public
 	 */
-	drawFrom(sender: CardStorage, number: number = 1): CardStorage {
-		if (sender.length < number) {
+	drawFrom(storage: CardStorage, number: number = 1): CardStorage {
+		if (storage.length < number) {
 			throw new RangeError(
-				`Not enough Cards to be drawn. CardStorage's length: ${sender.length}. Number wanted: ${number}`,
+				`Not enough Cards to be drawn. CardStorage's length: ${storage.length}. Number wanted: ${number}`,
 			);
 		}
 
 		for (let i = 0; i < number; i++) {
-			sender.top.moveTo(this);
+			storage.top.moveTo(this);
 		}
 
 		return this;

@@ -1,5 +1,4 @@
-import type { PseudoCard } from "./";
-import { Card, CardStorage } from "./";
+import { CardStorage, type PseudoCard, Card } from "./";
 
 /**
  * A Decklist is a complete collection of Cards.
@@ -25,7 +24,7 @@ export class Decklist extends Array<Card> {
 		}
 	}
 
-	constructor(...pseudoCards: Array<PseudoCard>) {
+	constructor(pseudoCards: Array<PseudoCard>) {
 		super();
 
 		this.defaultStorage = new CardStorage("deck");
