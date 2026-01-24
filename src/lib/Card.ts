@@ -1,32 +1,133 @@
-export type CardValue = "A" | "K" | "Q" | "J" | "10" | "9" | "8" | "7" | "6" | "5" | "4" | "3" | "2"
-export type CardSuit = "♣" | "♦" | "♥" | "♠"
-export type CardId = `${CardValue}${CardSuit}`
+import type { PseudoCard } from "./";
+import { Decklist, CardStorage } from "./";
 
+/**
+ * The core element of this library. It represents a real world card.
+ * @constructor
+ * @param {Decklist} decklist - The Decklist the Card is part of
+ * @param {PseudoCard} pseudoCard - The blueprint of the Card
+ */
 export class Card {
-	readonly id: CardId
+	/**
+	 * The list of all existing Cards.
+	 * @type {Array<Card>}
+	 * @private
+	 */
+	static #list: Array<Card> = [];
 
-	get value() {
-		return this.id.slice(0, -1) as CardValue
+	/**
+	 * Gets a Card by its ID.
+	 * @param {number} id - The ID of the Card
+	 * @returns The Card or undefined if ID didn't match
+	 * @public
+	 */
+	static getById(id: number): Card {
+		return Card.#list.find((card) => card.id === id);
 	}
-	get suit() {
-		return this.id.slice(-1) as CardSuit
+
+	/**
+	 * Adds a new Card to the list of existing ones.
+	 * @param {Card} card - The Card to add
+	 * @private
+	 */
+	static #add(card: Card) {
+		Card.#list.push(card);
 	}
 
-	constructor(id: CardId) {
-		Card.checkId(id)
-
-		this.id = id
+	#id: number;
+	/**
+	 * The ID of a Card.
+	 * @type {number}
+	 * @readonly
+	 */
+	get id() {
+		return this.#id;
 	}
 
-	private static checkId(possibleId: CardId) {
-		const setValues = new Set(["A", "K", "Q", "J", "10", "9", "8", "7", "6", "5", "4", "3", "2"])
-		const setSuits = new Set(["♣", "♦", "♥", "♠"])
+	#name: string;
+	/**
+	 * The name of a Card.
+	 * @type {string}
+	 * @readonly
+	 */
+	get name() {
+		return this.#name;
+	}
 
-		const HAS_VALID_VALUE = setValues.has(possibleId.slice(0, -1))
-		const HAS_VALID_SUIT = setSuits.has(possibleId.slice(-1))
+	/**
+	 * The Decklist a Card comes from.
+	 * @type {Decklist}
+	 * @private
+	 */
+	#decklist: Decklist;
 
-		if (!HAS_VALID_VALUE || !HAS_VALID_SUIT) {
-			throw new TypeError(`'${possibleId}' is not a valid CardId`)
-		}
+	#location: CardStorage;
+	/**
+	 * The current location of a Card.
+	 * @type {CardStorage}
+	 * @readonly
+	 */
+	get location() {
+		return this.#location;
+	}
+
+	#images = {
+		back: undefined,
+		front: undefined,
+	};
+	/**
+	 * The image sources of a Card.
+	 * @type {Object}
+	 * @readonly
+	 */
+	get images() {
+		return this.#images;
+	}
+
+	constructor(deckList: Decklist, pseudoCard: PseudoCard) {
+		this.#name = pseudoCard.name;
+
+		this.#decklist = deckList;
+		this.#location = deckList.defaultStorage;
+		this.#location.add(this);
+
+		this.#images.front = pseudoCard.assets?.front ?? "";
+		this.#images.back = pseudoCard.assets?.back ?? "";
+
+		this.#id = Card.length + 1;
+		Card.#add(this);
+	}
+
+	/**
+	 * Moves a Card to the given CardStorage.
+	 * @param {CardStorage} target - The CardStorage the Card moves to
+	 * @returns The updated Card
+	 * @public
+	 */
+	moveTo(target: CardStorage): Card {
+		this.location.remove(this);
+		target.add(this);
+
+		this.#location = target;
+
+		return this;
+	}
+
+	/**
+	 * Returns a Card to its default CardStorage.
+	 * @returns The updated Card
+	 * @public
+	 */
+	return(): Card {
+		this.moveTo(this.#decklist.defaultStorage);
+
+		return this;
+	}
+
+	/**
+	 * Returns a string representation of an object.
+	 */
+	toString(): string {
+		return this.name;
 	}
 }

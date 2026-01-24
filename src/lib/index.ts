@@ -1,6 +1,5 @@
-export * from "./Card"
-export * from "./CardList"
-export * from "./CardCollection"
+export type * from "./index.d";
 
-export * from "./Deck"
-export * from "./Board"
+export * from "./Card";
+export * from "./Decklist";
+export * from "./CardStorage";
