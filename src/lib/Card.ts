@@ -1,5 +1,4 @@
-import type { PseudoCard } from "./";
-import { Decklist, CardStorage } from "./";
+import { type Decklist, type CardStorage, type PseudoCard } from "./";
 
 /**
  * The core element of this library. It represents a real world card.
@@ -94,7 +93,7 @@ export class Card {
 		this.#images.front = pseudoCard.assets?.front ?? "";
 		this.#images.back = pseudoCard.assets?.back ?? "";
 
-		this.#id = Card.length + 1;
+		this.#id = Card.#list.length + 1;
 		Card.#add(this);
 	}
 
