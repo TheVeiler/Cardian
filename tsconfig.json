@@ -7,11 +7,11 @@
 		"allowJs": true,
 		"esModuleInterop": true,
 		"isolatedModules": true,
-		"target": "es6",
+		"target": "es2022",
 
 		"paths": {
 			"@lib": ["./src/lib/index.ts"],
-			"@plugins/decklists": ["./src/plugins/decklists/index.ts"]
+			"@plugins": ["./src/plugins/index.ts"]
 		}
 	}
 }
