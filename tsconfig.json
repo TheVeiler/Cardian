@@ -11,6 +11,8 @@
 		"isolatedModules": true,
 		"target": "es2022",
 		"baseUrl": "./",
+		"declaration": true,
+		"declarationMap": true,
 
 		"paths": {
 			"lib": ["./src/lib/index.js"],

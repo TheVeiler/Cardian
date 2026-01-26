@@ -1,4 +1,13 @@
-import { Decklist, CardStorage, PseudoCard } from "./";
+import { Decklist, CardStorage } from "./";
+
+export interface PseudoCard {
+	name?: string;
+	copies?: number;
+	assets?: {
+		front?: string;
+		back?: string;
+	};
+}
 
 /**
  * The core element of this library. It represents a real world card.

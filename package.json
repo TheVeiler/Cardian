@@ -1,7 +1,7 @@
 {
 	"name": "cardian",
-	"version": "1.0.0",
-	"description": "",
+	"version": "1.0.1",
+	"description": "Cardian is an utility library to help you making apps using cards.",
 	"author": "TheVeiler",
 	"license": "ISC",
 	"keywords": [],
@@ -15,6 +15,7 @@
 	},
 	"type": "module",
 	"main": "dist/index.js",
+	"types": "dist/index.d.ts",
     "files": ["dist/*"],
 	"scripts": {
 		"dev": "tsx watch ./src/plugins/games/blackjack/index.ts",
