@@ -1,4 +1,4 @@
-import { type Decklist, type CardStorage, type PseudoCard } from "./";
+import { Decklist, CardStorage, PseudoCard } from "./";
 
 /**
  * The core element of this library. It represents a real world card.

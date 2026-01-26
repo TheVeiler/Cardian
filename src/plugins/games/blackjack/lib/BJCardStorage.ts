@@ -1,4 +1,4 @@
-import { CardStorage } from "@lib";
+import { CardStorage } from "lib";
 import { type BJCard, type Player } from "./";
 
 export class BJCardStorage extends CardStorage {
@@ -37,7 +37,7 @@ export class BJCardStorage extends CardStorage {
 
 		return score;
 	}
-    
+
 	isPlaying = false;
 
 	constructor(name: string, player: Player) {

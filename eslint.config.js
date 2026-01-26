@@ -40,4 +40,11 @@ export default defineConfig([
 			"@typescript-eslint/no-unused-vars": "warn",
 		},
 	},
+	{
+		languageOptions: {
+			parserOptions: {
+				tsconfigRootDir: import.meta.dirname,
+			},
+		},
+	},
 ]);

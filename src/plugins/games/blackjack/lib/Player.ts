@@ -1,3 +1,4 @@
+import { CardStorage } from "lib";
 import { BJCardStorage, Game } from "./";
 
 export class Player {
@@ -46,7 +47,7 @@ export class Player {
 		Player.#add(this);
 	}
 
-	drawFrom(storage: BJCardStorage, number: number = 1) {
+	drawFrom(storage: BJCardStorage | CardStorage, number: number = 1) {
 		return this.hand.drawFrom(storage, number);
 	}
 

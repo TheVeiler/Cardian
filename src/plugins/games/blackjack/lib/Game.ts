@@ -1,9 +1,10 @@
+import { Decklist, CardStorage } from "lib";
 import { Dealer, Player, BJCardStorage, BJDecklist } from "./";
-import { decklists } from "@plugins";
+import { decklists } from "plugins";
 
 export class Game {
-	#decklist: BJDecklist;
-	deck: BJCardStorage;
+	#decklist: BJDecklist | Decklist;
+	deck: BJCardStorage | CardStorage;
 	dealer: Dealer;
 	players: Array<Player> = [];
 
@@ -17,7 +18,7 @@ export class Game {
 	}
 
 	constructor() {
-		this.#decklist = new BJDecklist(decklists.standard52());
+		this.#decklist = new Decklist(decklists.standard52);
 		this.deck = this.#decklist.defaultStorage;
 		this.dealer = new Dealer(this);
 	}

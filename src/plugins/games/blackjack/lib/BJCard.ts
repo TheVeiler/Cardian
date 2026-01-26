@@ -1,4 +1,4 @@
-import { type PseudoCard, Card } from "@lib";
+import { type PseudoCard, Card } from "lib";
 import { BJDecklist } from "./BJDecklist";
 
 type CardRank = "A" | "K" | "Q" | "J" | "10" | "9" | "8" | "7" | "6" | "5" | "4" | "3" | "2";

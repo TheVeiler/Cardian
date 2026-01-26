@@ -1,4 +1,4 @@
-import { Decklist, PseudoCard } from "@lib";
+import { Decklist, PseudoCard } from "lib";
 import { BJCardStorage } from "./";
 
 export class BJDecklist extends Decklist {
@@ -16,8 +16,8 @@ export class BJDecklist extends Decklist {
 
 	constructor(pseudoCards: Array<PseudoCard>) {
 		super(pseudoCards);
-
-		this.defaultStorage = new BJCardStorage("deck", null);
+		console.log(this);
+		this.#defaultStorage = new BJCardStorage("deck", null);
 		this.add(...pseudoCards);
 	}
 }
