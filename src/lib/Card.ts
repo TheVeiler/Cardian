@@ -4,8 +4,8 @@ export interface PseudoCard {
 	name?: string;
 	copies?: number;
 	assets?: {
-		front?: string;
-		back?: string;
+		front?: URL;
+		back?: URL;
 	};
 }
 
@@ -78,6 +78,12 @@ export class Card {
 	get location() {
 		return this.#location;
 	}
+	set location(destination: CardStorage) {
+		this.location.remove(this);
+
+		this.#location = destination;
+		destination.add(this);
+	}
 
 	#images = {
 		back: undefined,
@@ -108,15 +114,12 @@ export class Card {
 
 	/**
 	 * Moves a Card to the given CardStorage.
-	 * @param {CardStorage} target - The CardStorage the Card moves to
+	 * @param {CardStorage} destination - The CardStorage the Card moves to
 	 * @returns The updated Card
 	 * @public
 	 */
-	moveTo(target: CardStorage): Card {
-		this.location.remove(this);
-		target.add(this);
-
-		this.#location = target;
+	moveTo(destination: CardStorage): Card {
+		this.location = destination;
 
 		return this;
 	}
@@ -127,7 +130,7 @@ export class Card {
 	 * @public
 	 */
 	return(): Card {
-		this.moveTo(this.#decklist.defaultStorage);
+		this.location = this.#decklist.defaultStorage;
 
 		return this;
 	}
