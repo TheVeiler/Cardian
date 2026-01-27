@@ -28,3 +28,6 @@ console.log(deck.top.name); // should display a random card
 ## To-do
 
 - Add unit tests
+- Make a proper documentation
+- Add support of cjs/import/require
+- Redo CardStorage.add & .remove
