@@ -7,8 +7,10 @@ import css from "@eslint/css";
 import { defineConfig, globalIgnores } from "eslint/config";
 
 export default defineConfig([
-	globalIgnores(["package-lock.json"]),
+	globalIgnores(["package-lock.json", "dist/"]),
+
 	tseslint.configs.recommended,
+
 	{ files: ["**/*.{js,mjs,cjs,ts,mts,cts}"], plugins: { js }, extends: ["js/recommended"] },
 	{
 		files: ["**/*.{js,mjs,cjs,ts,mts,cts}"],

@@ -18,7 +18,9 @@
 			"lib": ["./src/lib/index.js"],
 			"lib/*": ["./src/lib/*"],
 			"plugins": ["./src/plugins/index.js"],
-			"plugins/*": ["./src/plugins/*"]
+			"plugins/*": ["./src/plugins/*"],
+			"public": ["./public/index.js"],
+			"public/*": ["./public/*"]
 		}
 	}
 }
