@@ -1,5 +1,8 @@
 import { PseudoCard } from "lib";
 
+const rootDirectory = import.meta.url.split("node_modules/cardian/")[0];
+const assetsDirectory = `${rootDirectory}public/plugins/decklists/standard52/`;
+
 const ranks = new Set(["A", "K", "Q", "J", "10", "9", "8", "7", "6", "5", "4", "3", "2"]);
 const suits = new Set(["♦", "♠", "♥", "♣"]);
 
@@ -17,11 +20,12 @@ const pseudoCards: Array<PseudoCard> = [];
 
 for (const suit of suits) {
 	for (const rank of ranks) {
+		const filename = `${rank.toLowerCase()}${suitInitials[suit]}`;
 		const pseudoCard = {
 			name: `${rank}${suit}`,
 			assets: {
-				front: `./assets/${rank.toLowerCase()}${suitInitials[suit]}.svg`,
-				back: "./assets/back_blue.svg",
+				front: new URL(`${filename}.svg`, assetsDirectory),
+				back: new URL("back_blue.svg", assetsDirectory),
 			},
 		};
 
@@ -30,3 +34,20 @@ for (const suit of suits) {
 }
 
 export default pseudoCards;
+
+export type CardValue =
+	| "A"
+	| "K"
+	| "Q"
+	| "J"
+	| "10"
+	| "9"
+	| "8"
+	| "7"
+	| "6"
+	| "5"
+	| "4"
+	| "3"
+	| "2";
+export type CardSuit = "♣" | "♦" | "♥" | "♠";
+export type CardName = `${CardValue}${CardSuit}`;
