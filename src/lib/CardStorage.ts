@@ -121,7 +121,7 @@ export class CardStorage {
 			position = positionOrfirstCard;
 		}
 
-		const index = position === "top" ? 0 : -1;
+		const index = position === "top" ? 0 : this.#content.length;
 
 		this.#content.splice(index, 0, ...cards);
 
