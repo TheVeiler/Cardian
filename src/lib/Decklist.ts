@@ -65,4 +65,22 @@ export class Decklist extends Array<Card> {
 
 		return this;
 	}
+
+	/**
+	 * Checks and fixes a Decklist's Cards' locations
+	 * @returns The updated Decklist
+	 * @public
+	 */
+	fixLocations(): Decklist {
+		const wronglyLocatedCards = this.filter((card) => card.location === undefined);
+
+		for (const card of wronglyLocatedCards) {
+			console.log(
+				`${card.name} had undefined location; moved it to its decklist's default storage.`,
+			);
+			card.moveTo(this.#defaultStorage);
+		}
+
+		return this;
+	}
 }
