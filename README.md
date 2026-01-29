@@ -1,7 +1,5 @@
 # Cardian
 
-⚠ **WORK IN PROGRESS**
-
 ## Description
 
 **Cardian** is an utility library to help you making apps using cards.
@@ -27,7 +25,6 @@ console.log(deck.top.name); // should display a random card
 
 ## To-do
 
+- Make a proper documentation (using jsdoc or tsdoc maybe?)
 - Add unit tests
-- Make a proper documentation
 - Add support of cjs/import/require
-- Redo CardStorage.add & .remove
