@@ -102,26 +102,28 @@ export class CardStorage {
 	 * @returns The updated CardStorage
 	 * @public
 	 */
-	add(...cards: Array<Card>): CardStorage;
+	addCards(...cards: Array<Card>): CardStorage;
 	/**
-	 * Adds Cards to a CardStorage, at the given position.
+	 * Adds Cards to a CardStorage, at given position.
 	 * @param {"top" | "bottom"} position - The position at which to insert the Cards (default: "bottom")
 	 * @param {Array<Cards>} cards - The Cards to add
 	 * @returns The updated CardStorage
 	 * @public
 	 */
-	add(position: Position, ...cards: Array<Card>): CardStorage;
-	add(positionOrfirstCard: Card | Position, ...cards: Array<Card>): CardStorage {
+	addCards(position: Position, ...cards: Array<Card>): CardStorage;
+	addCards(positionOrfirstCard: Card | Position = "bottom", ...cards: Array<Card>): CardStorage {
 		let position: "bottom" | "top";
 
 		if (positionOrfirstCard instanceof Card) {
-			cards.unshift(positionOrfirstCard);
 			position = "bottom";
+			cards.unshift(positionOrfirstCard);
 		} else {
 			position = positionOrfirstCard;
 		}
 
 		const index = position === "top" ? 0 : this.#content.length;
+
+		cards = cards.filter((card) => card.location === undefined);
 
 		this.#content.splice(index, 0, ...cards);
 
@@ -134,7 +136,9 @@ export class CardStorage {
 	 * @returns The updated CardStorage
 	 * @public
 	 */
-	remove(...cards: Array<Card>): CardStorage {
+	removeCards(...cards: Array<Card>): CardStorage {
+		cards = cards.filter((card) => card.location === undefined);
+
 		for (const card of cards) {
 			const index = this.#content.findIndex((storageCard) => storageCard.id === card.id);
 
@@ -192,7 +196,7 @@ export class CardStorage {
 		while (initialContent.length > 0) {
 			const randomIndex = Math.floor(Math.random() * initialContent.length);
 
-			this.add(...initialContent.splice(randomIndex, 1));
+			this.addCards(...initialContent.splice(randomIndex, 1));
 		}
 
 		return this;
