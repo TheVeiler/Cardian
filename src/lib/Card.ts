@@ -69,7 +69,7 @@ export class Card {
 	 */
 	#decklist: Decklist;
 
-	#location: CardStorage;
+	#location: CardStorage | undefined;
 	/**
 	 * The current location of a Card.
 	 * @type {CardStorage}
@@ -77,12 +77,6 @@ export class Card {
 	 */
 	get location() {
 		return this.#location;
-	}
-	set location(destination: CardStorage) {
-		this.location.remove(this);
-
-		this.#location = destination;
-		destination.add(this);
 	}
 
 	#images = {
@@ -103,7 +97,7 @@ export class Card {
 
 		this.#decklist = deckList;
 		this.#location = deckList.defaultStorage;
-		this.#location.add(this);
+		this.#location.addCards(this);
 
 		this.#images.front = pseudoCard.assets?.front ?? "";
 		this.#images.back = pseudoCard.assets?.back ?? "";
@@ -119,7 +113,13 @@ export class Card {
 	 * @public
 	 */
 	moveTo(destination: CardStorage): Card {
-		this.location = destination;
+		const origin = this.location;
+
+		this.#location = undefined; // This *must* be temporary.
+		origin.removeCards(this);
+
+		destination.addCards(this);
+		this.#location = destination;
 
 		return this;
 	}
@@ -130,7 +130,7 @@ export class Card {
 	 * @public
 	 */
 	return(): Card {
-		this.location = this.#decklist.defaultStorage;
+		this.moveTo(this.#decklist.defaultStorage);
 
 		return this;
 	}
