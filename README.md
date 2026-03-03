@@ -26,5 +26,6 @@ console.log(deck.top.name); // should display a random card
 ## To-do
 
 - Make a proper documentation (using jsdoc or tsdoc maybe?)
+- Add listener for events when Card moved or when CardStorage changed
 - Add unit tests
 - Add support of cjs/import/require
