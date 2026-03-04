@@ -3,9 +3,9 @@ import { Card } from "./";
 type Position = "top" | "bottom";
 
 /**
- * A CardStorage is a pile of Cards that can be used to create hands, boards, and discard piles.
+ * A CardStorage is a pile of Cards that can be used to represent hands, boards, and discard piles.
  * @constructor
- * @param {string} name - The name of the CardStorage; Be careful as names are not required to be unique
+ * @param {string} name - The name of the CardStorage; Be careful when using names as identifiers as they are not required to be unique
  */
 export class CardStorage {
 	/**
@@ -26,7 +26,7 @@ export class CardStorage {
 
 	/**
 	 * Gets a CardStorage by its name.
-	 * @param {string} name - The name of the CardStorage; Be careful as names are not required to be unique
+	 * @param {string} name - The name of the CardStorage; Be careful when using names as identifiers as they are not required to be unique
 	 * @returns The CardStorage instance, or undefined if name didn't match
 	 * @public
 	 */
@@ -45,7 +45,7 @@ export class CardStorage {
 
 	#name: string;
 	/**
-	 * The name of a CardStorage. Be careful as names are not required to be unique.
+	 * The name of a CardStorage. Be careful when using names as identifiers as they are not required to be unique
 	 * @type {string}
 	 * @readonly
 	 */
@@ -122,8 +122,6 @@ export class CardStorage {
 		}
 
 		const index = position === "top" ? 0 : this.#content.length;
-
-		cards = cards.filter((card) => card.location === undefined);
 
 		this.#content.splice(index, 0, ...cards);
 

@@ -23,6 +23,8 @@ export class Card {
 	 */
 	static #list: Array<Card> = [];
 
+	static #lastUsedId = 0;
+
 	/**
 	 * Gets a Card by its ID.
 	 * @param {number} id - The ID of the Card
@@ -92,17 +94,45 @@ export class Card {
 		return this.#images;
 	}
 
+	#onMoveStart = undefined;
+	get onMoveStart() {
+		return this.#onMoveStart;
+	}
+	set onMoveStart(callback: (origin?: CardStorage, destination?: CardStorage) => void) {
+		if (["function", "undefined"].includes(typeof callback)) {
+			this.#onMoveStart = callback;
+			return;
+		}
+
+		this.#onMoveStart = undefined;
+		throw new TypeError(
+			`Card.onMoveStart must be a function or undefined. Received: ${typeof callback}`,
+		);
+	}
+	#onMoveEnd = undefined;
+	get onMoveEnd() {
+		return this.#onMoveEnd;
+	}
+	set onMoveEnd(callback: (origin?: CardStorage, destination?: CardStorage) => void) {
+		if (["function", "undefined"].includes(typeof callback)) {
+			this.#onMoveEnd = callback;
+			return;
+		}
+
+		this.#onMoveEnd = undefined;
+	}
+
 	constructor(deckList: Decklist, pseudoCard: PseudoCard) {
 		this.#name = pseudoCard.name;
 
 		this.#decklist = deckList;
+		deckList.defaultStorage.addCards(this);
 		this.#location = deckList.defaultStorage;
-		this.#location.addCards(this);
 
 		this.#images.front = pseudoCard.assets?.front ?? "";
 		this.#images.back = pseudoCard.assets?.back ?? "";
 
-		this.#id = Card.#list.length + 1;
+		this.#id = Card.#lastUsedId++;
 		Card.#add(this);
 	}
 
@@ -115,11 +145,19 @@ export class Card {
 	moveTo(destination: CardStorage): Card {
 		const origin = this.location;
 
+		if (typeof this.onMoveStart === "function") {
+			this.onMoveStart(origin, destination);
+		}
+
 		this.#location = undefined; // This *must* be temporary.
 		origin.removeCards(this);
 
 		destination.addCards(this);
 		this.#location = destination;
+
+		if (typeof this.onMoveEnd === "function") {
+			this.onMoveEnd(origin, destination);
+		}
 
 		return this;
 	}
@@ -130,7 +168,16 @@ export class Card {
 	 * @public
 	 */
 	return(): Card {
+		const _onMoveStart = this.onMoveStart;
+		const _onMoveEnd = this.onMoveEnd;
+
+		this.onMoveStart = undefined;
+		this.onMoveEnd = undefined;
+
 		this.moveTo(this.#decklist.defaultStorage);
+
+		this.onMoveStart = _onMoveStart;
+		this.onMoveEnd = _onMoveEnd;
 
 		return this;
 	}

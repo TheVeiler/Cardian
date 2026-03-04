@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 1.0.3
+
+- added decklist standard52_sextet
+- added events Card.onMoveStart and Card.onMoveEnd
+- changed build architecture
+
 ## 1.0.2
 
 - added standard52 images

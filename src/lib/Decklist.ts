@@ -17,11 +17,11 @@ export class Decklist extends Array<Card> {
 		return this.#defaultStorage;
 	}
 	set defaultStorage(storage: CardStorage) {
-		this.#defaultStorage = storage;
-
 		for (const card of this) {
 			card.moveTo(storage);
 		}
+
+		this.#defaultStorage = storage;
 	}
 
 	constructor(pseudoCards: Array<PseudoCard>) {
@@ -60,7 +60,8 @@ export class Decklist extends Array<Card> {
 	 */
 	reset(): Decklist {
 		for (const card of this) {
-			card.moveTo(this.#defaultStorage);
+			//card.moveTo(this.#defaultStorage);
+			card.return();
 		}
 
 		return this;
@@ -78,7 +79,8 @@ export class Decklist extends Array<Card> {
 			console.log(
 				`${card.name} had undefined location; moved it to its decklist's default storage.`,
 			);
-			card.moveTo(this.#defaultStorage);
+			//card.moveTo(this.#defaultStorage);
+			card.return();
 		}
 
 		return this;
