@@ -2,8 +2,6 @@ import { Decklist, CardStorage } from ".";
 
 type Position = "top" | "bottom";
 
-type Position = "top" | "bottom";
-
 export interface PseudoCard {
 	name?: string;
 	copies?: number;
