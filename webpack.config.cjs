@@ -7,6 +7,8 @@ const CopyWebpackPlugin = require("copy-webpack-plugin");
 const config = {
 	entry: "./src/index.ts",
 
+	target: "web",
+
 	//devtool: "inline-source-map",
 
 	experiments: {
@@ -51,10 +53,10 @@ const config = {
 module.exports = () => {
 	config.mode = process.env.NODE_ENV === "production" ? "production" : "development";
 
-	config.node = {
-		__filename: "eval-only",
-		__dirname: "eval-only",
-	};
+	// config.node = {
+	// 	__filename: "eval-only",
+	// 	__dirname: "eval-only",
+	// };
 
 	return config;
 };
