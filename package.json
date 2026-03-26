@@ -1,7 +1,7 @@
 {
 	"name": "cardian",
 	"version": "1.4.1",
-	"description": "Cardian is an utility library to help you making apps using cards.",
+	"description": "Cardian is a utility library whose purpose is to make creating apps using cards easier.",
 	"author": "TheVeiler",
 	"license": "ISC",
 	"keywords": [],
