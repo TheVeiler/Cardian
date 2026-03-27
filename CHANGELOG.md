@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 2.0.0
+
+- Renamed CardStorage to Box
+- Renamed Decklist to List
+- Reworked file architecture and exports for smoother paths
+
 ## 1.4.0
 
 - used webpack to add esm & cjs support
