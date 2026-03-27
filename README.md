@@ -1,8 +1,10 @@
 # Cardian
 
+![preview](./preview.png)
+
 ## Description
 
-**Cardian** is an utility library to help you making apps using cards.
+**Cardian** is a utility library whose purpose is to make creating apps using cards easier.
 
 The library gives you access to the following exported classes, and all of them are also included in the default export.
 
@@ -69,3 +71,7 @@ console.log(deck.top.name); // should display a random card
 - Make a proper documentation (using jsdoc or tsdoc maybe?)
 - Add listener for events when CardStorage changed
 - Add unit tests
+
+## Credits
+
+Images used for Cardian are made by David Bellot, and only slightly edited afterhand by TheVeiler. All credit must go to the original artist alone. [See more](./public/assets/standard52/README.md)
