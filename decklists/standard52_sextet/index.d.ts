@@ -1,6 +1,6 @@
-import type { PseudoCard } from "../../../lib/index";
+import type { PseudoCard } from "/common";
 /**
- * A standard 52-card deck of French-suited playing cards (Ace to King, for each of the four suits: clubs, diamonds, hearts and spades).
+ * Six standard 52-card decks of French-suited playing cards (Ace to King, for each of the four suits: clubs, diamonds, hearts and spades).
  */
 declare const pseudoCards: Array<PseudoCard>;
 export default pseudoCards;

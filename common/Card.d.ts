@@ -1,4 +1,4 @@
-import { Decklist, CardStorage } from ".";
+import { List, Box } from "/common";
 type Position = "top" | "bottom";
 export interface PseudoCard {
     name?: string;
@@ -11,7 +11,7 @@ export interface PseudoCard {
 /**
  * The core element of this library. It represents a real world card.
  * @constructor
- * @param {Decklist} decklist - The Decklist the Card is part of
+ * @param {List} List - The List the Card is part of
  * @param {PseudoCard} pseudoCard - The blueprint of the Card
  */
 export declare class Card {
@@ -37,10 +37,10 @@ export declare class Card {
     get name(): string;
     /**
      * The current location of a Card.
-     * @type {CardStorage}
+     * @type {Box}
      * @readonly
      */
-    get location(): CardStorage;
+    get location(): Box;
     /**
      * The image sources of a Card.
      * @type {Object}
@@ -50,28 +50,25 @@ export declare class Card {
         back?: URL;
         front?: URL;
     };
-    get onMoveStart(): (origin?: CardStorage, destination?: CardStorage) => void;
-    set onMoveStart(callback: (origin?: CardStorage, destination?: CardStorage) => void);
-    get onMoveEnd(): (origin?: CardStorage, destination?: CardStorage) => void;
-    set onMoveEnd(callback: (origin?: CardStorage, destination?: CardStorage) => void);
-    constructor(decklist: Decklist, pseudoCard: PseudoCard);
+    get onMoveStart(): (origin?: Box, destination?: Box) => void;
+    set onMoveStart(callback: (origin?: Box, destination?: Box) => void);
+    get onMoveEnd(): (origin?: Box, destination?: Box) => void;
+    set onMoveEnd(callback: (origin?: Box, destination?: Box) => void);
     /**
-     * Moves a Card to the given CardStorage.
-     * @param {CardStorage} destination - The CardStorage the Card moves to
+     * Moves a Card to the given Box.
+     * @param {Box} destination - The Box the Card moves to
      * @returns The updated Card
      * @public
      */
-    moveTo(destination: CardStorage, position?: Position): Card;
+    moveTo(destination: Box, position?: Position): Card;
     /**
-     * Returns a Card to its default CardStorage.
+     * Returns a Card to its default Box.
      * @returns The updated Card
      * @public
      */
     return(): Card;
-    /**
-     * Returns a string representation of an object.
-     */
-    toString(): string;
+    constructor(List: List, pseudoCard: PseudoCard);
+    get [Symbol.toStringTag](): string;
 }
 export {};
 //# sourceMappingURL=Card.d.ts.map
