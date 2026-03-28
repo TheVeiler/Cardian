@@ -1,18 +1,19 @@
 import * as common from "./common/index";
-import * as decklists from "./decklists/index";
-// import * as blackjack from "./blackjack/index";
+import * as blackjack from "./blackjack/index";
 // import * as holdem from "./holdem/index";
+
+import * as decklists from "./decklists/index";
 
 interface IComponents {
 	Card: Card;
 	Box: Box;
 	List: List;
 }
-type Card = typeof common.Card; // | typeof blackjack.Card; // | typeof holdem.Card;
-type Box = typeof common.Box; // | typeof blackjack.Box; // | typeof holdem.Card;
-type List = typeof common.List; // | typeof blackjack.List; // | typeof holdem.Card;
+type Card = typeof common.Card | typeof blackjack.Card; // | typeof holdem.Card;
+type Box = typeof common.Box | typeof blackjack.Box; // | typeof holdem.Card;
+type List = typeof common.List | typeof blackjack.List; // | typeof holdem.Card;
 
-type Mode = "none"; // | "blackjack";
+type Mode = "none" | "blackjack"; // | "holdem";
 
 class Cardian {
 	#components: IComponents;
@@ -49,9 +50,9 @@ class Cardian {
 				this.#components = common;
 				break;
 
-			// case "blackjack":
-			// 	this.#components = blackjack;
-			// 	break;
+			case "blackjack":
+				this.#components = blackjack;
+				break;
 
 			// case "holdem":
 			//     this.#components = holdem;
