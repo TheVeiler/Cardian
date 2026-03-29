@@ -1,6 +1,5 @@
+import type { Position } from "/types";
 import { Card } from "/common";
-
-type Position = "top" | "bottom";
 
 /**
  * A Box is an ordered pile of Cards that can be used to represent hands, boards, and discard piles.

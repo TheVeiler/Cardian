@@ -1,10 +1,9 @@
-import { Card, List, type PseudoCard } from "/common";
-import type { CardValue } from "/decklists/standard52/index";
-
-type CardScore = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11;
+import type { PseudoCard, CardRank, CardScore } from "/types";
+import { Card } from "/common";
+import { List } from "/blackjack";
 
 class BJCard extends Card {
-	#rank: CardValue;
+	#rank: CardRank;
 	get rank() {
 		return this.#rank;
 	}
@@ -17,7 +16,7 @@ class BJCard extends Card {
 	constructor(decklist: List, pseudoCard: PseudoCard) {
 		super(decklist, pseudoCard);
 
-		this.#rank = super.name.slice(0, -1) as CardValue;
+		this.#rank = super.name.slice(0, -1) as CardRank;
 
 		switch (this.rank) {
 			case "A":

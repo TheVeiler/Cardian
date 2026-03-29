@@ -1,8 +1,8 @@
-import type { PseudoCard } from "/common";
+import type { CardRank, CardSuit, PseudoCard } from "/types";
 
 const assetsDirectory = `file://${__dirname}/assets/standard52/`;
 
-const ranks: Set<CardValue> = new Set([
+const ranks: Set<CardRank> = new Set([
 	"A",
 	"K",
 	"Q",
@@ -48,20 +48,3 @@ for (const suit of suits) {
 }
 
 export default pseudoCards;
-
-export type CardValue =
-	| "A"
-	| "K"
-	| "Q"
-	| "J"
-	| "10"
-	| "9"
-	| "8"
-	| "7"
-	| "6"
-	| "5"
-	| "4"
-	| "3"
-	| "2";
-export type CardSuit = "♣" | "♦" | "♥" | "♠";
-export type CardName = `${CardValue}${CardSuit}`;

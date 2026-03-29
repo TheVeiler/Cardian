@@ -1,5 +1,6 @@
+import type { PseudoCard } from "/types";
+import type { Box, Card } from "/common";
 import Cardian from "/Cardian";
-import type { Box, Card, PseudoCard } from "/common";
 
 /**
  * A List is a complete collection of Cards.

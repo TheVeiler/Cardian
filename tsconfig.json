@@ -14,10 +14,14 @@
 		"types": ["node", "webpack/module"],
 
 		"paths": {
+			"/types": ["src/types/index"],
+			"/types/*": ["src/types/*"],
 			"/common": ["src/common/index"],
 			"/common/*": ["src/common/*"],
 			"/blackjack": ["src/blackjack/index"],
 			"/blackjack/*": ["src/blackjack/*"],
+			"/holdem": ["src/holdem/index"],
+			"/holdem/*": ["src/holdem/*"],
 			"/decklists": ["src/decklists/index"],
 			"/decklists/*": ["src/decklists/*"],
 			"/Cardian": ["src/Cardian"]
