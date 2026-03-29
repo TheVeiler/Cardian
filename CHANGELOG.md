@@ -1,8 +1,14 @@
 # CHANGELOG
 
+## x.x.x
+
+- Blackjack: Added Box.isBlackjack
+- Added support for holdem poker
+- Put types in a dedicated folder
+
 ## 2.0.1
 
-- blackjack: Fixed score calculation for 3+ aces
+- Blackjack: Fixed score calculation for 3+ aces
 
 ## 2.0.0
 
@@ -11,6 +17,7 @@
 - Renamed CardStorage to Box
 - Renamed Decklist to List
 - Reworked file architecture and exports for smoother paths
+- Added Cardian.setMode
 
 ## 1.4.0
 
