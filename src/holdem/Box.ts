@@ -21,16 +21,22 @@ const allRanks = [
 ] as CardRank[];
 
 class HEHand {
-	cards: Card[];
-	score: number;
-	identifier: string;
-
-	constructor(cards: Card[]) {
-		this.cards = cards;
-
-		this.identifier = this.#getIdentifier();
-		this.score = this.#getScore();
+	#cards: Card[];
+	get cards() {
+		return this.#cards;
 	}
+
+	#score: number;
+	get score() {
+		return this.#score;
+	}
+
+	#identifier: string;
+	get identifier() {
+		return this.#identifier;
+	}
+
+	static highLow: boolean = false;
 
 	#getIdentifier(): string {
 		const cardRanks = this.cards.map((card) => card.rank);
@@ -99,14 +105,22 @@ class HEHand {
 	}
 
 	#getScore(): number {
-		const [tag, ...kickers] = this.identifier.split("-");
+		const [tag, ...kickers] = this.#identifier.split("-");
 
-		return (
+		const highScore =
 			tagValues.indexOf(tag) * 13 ** 5 +
 			kickers
 				.map((rank: CardRank, i) => allRanks.slice(1).indexOf(rank) * 13 ** (4 - i))
-				.reduce((a, b) => a + b)
-		);
+				.reduce((a, b) => a + b);
+
+		return HEHand.highLow ? -highScore : highScore;
+	}
+
+	constructor(cards: Card[]) {
+		this.#cards = cards;
+
+		this.#identifier = this.#getIdentifier();
+		this.#score = this.#getScore();
 	}
 }
 
@@ -137,7 +151,7 @@ class HEBox extends Box {
 		return hands.sort((a, b) => b.score - a.score);
 	}
 
-	get hand() {
+	get bestHand() {
 		return this.allHands[0];
 	}
 
