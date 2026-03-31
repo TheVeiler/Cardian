@@ -1,7 +1,7 @@
 import type { PseudoCard } from "/types";
 import { List } from "/common";
-declare class BJList extends List {
+declare class HEList extends List {
     constructor(pseudoCards: Array<PseudoCard>);
 }
-export { BJList as List };
+export { HEList as List };
 //# sourceMappingURL=List.d.ts.map

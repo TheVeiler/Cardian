@@ -1,9 +1,9 @@
-import { Card, List, type PseudoCard } from "/common";
-import type { CardValue } from "/decklists/standard52/index";
-type CardScore = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11;
+import type { PseudoCard, CardRank, CardScore } from "/types";
+import { Card } from "/common";
+import { List } from "/blackjack";
 declare class BJCard extends Card {
     #private;
-    get rank(): CardValue;
+    get rank(): CardRank;
     get value(): CardScore;
     constructor(decklist: List, pseudoCard: PseudoCard);
 }

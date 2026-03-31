@@ -1,13 +1,5 @@
+import type { Position, PseudoCard } from "/types";
 import { List, Box } from "/common";
-type Position = "top" | "bottom";
-export interface PseudoCard {
-    name?: string;
-    copies?: number;
-    assets?: {
-        front?: URL;
-        back?: URL;
-    };
-}
 /**
  * The core element of this library. It represents a real world card.
  * @constructor
@@ -70,5 +62,4 @@ export declare class Card {
     constructor(List: List, pseudoCard: PseudoCard);
     get [Symbol.toStringTag](): string;
 }
-export {};
 //# sourceMappingURL=Card.d.ts.map

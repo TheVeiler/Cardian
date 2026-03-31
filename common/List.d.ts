@@ -1,4 +1,5 @@
-import type { Box, Card, PseudoCard } from "/common";
+import type { PseudoCard } from "/types";
+import type { Box, Card } from "/common";
 /**
  * A List is a complete collection of Cards.
  * @constructor
